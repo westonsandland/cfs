@@ -1,0 +1,44 @@
+spawn qemu-system-i386 -nographic -smp 4 --serial mon:stdio -hdc kernel/kernel.img
+WARNING: Image format was not specified for 'kernel/kernel.img' and probing guessed raw.
+         Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
+         Specify the 'raw' format explicitly to remove the restrictions.
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+| What just happened? Why am I here?
+| totalProcs 4
+| memSize 0x7fd0000 127MB
+| localAPIC fee00000
+| ioAPIC fec00000
+| physical range 0x200000 0x7fd0000
+| pitInit freq 1000Hz
+| pitInit divider 59659
+| APIT running at 1000040616Hz
+| APIT counter=1000040 for 1000Hz
+| initialize 1
+| reset 1
+|      eip:0x8000
+| loading TSS for 1
+| 1 enabling interrupts, I'm scared
+| initialize 2
+| reset 2
+|      eip:0x8000
+| loading TSS for 2
+| 2 enabling interrupts, I'm scared
+| initialize 3
+| reset 3
+|      eip:0x8000
+| loading TSS for 3
+| 3 enabling interrupts, I'm scared
+| loading TSS for 0
+| 0 enabling interrupts, I'm scared
+*** printing tree
+*** found null
+***item = 42
+*** found null
+*** printing tree
+*** found null
+***item = 42
+*** found null
+*** x = 42
+| kernelMain returned
+| processor 0 halting
+| system shutdown
