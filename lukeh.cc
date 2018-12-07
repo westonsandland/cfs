@@ -13,10 +13,11 @@ void kernelMain(void) {
      tree.add(&d);
      tree.add(&e);
 
-     tree.printTree();
+     //tree.printTree();
      int *x = tree.removeLeftMost();
-     tree.printTree();
+     x = tree.removeLeftMost();
+     //tree.printTree();
+
 
      Debug::printf("*** x = %d\n",*x);
-
 }
