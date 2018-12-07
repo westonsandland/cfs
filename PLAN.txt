@@ -1,0 +1,9 @@
+- What are you going to do for your final project?
+We are going to use our own version of the Completely Fair Scheduler
+to implement scheduling.
+
+- Who are the team members
+Luke Hill
+Weston Sandland
+Alexander Davis
+

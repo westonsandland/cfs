@@ -1,0 +1,12 @@
+1,9c1
+< *** printing tree
+< *** found null
+< ***item = 42
+< *** found null
+< *** printing tree
+< *** found null
+< ***item = 42
+< *** found null
+< *** x = 42
+---
+> *** x = 3

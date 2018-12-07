@@ -1,0 +1,3 @@
+Sources:
+https://www.geeksforgeeks.org/c-program-red-black-tree-insertion/
+https://en.wikipedia.org/wiki/Red%E2%80%93black_tree
