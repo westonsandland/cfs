@@ -27,9 +27,14 @@ public:
     void setAdd(uint32_t add) {exeAdd = add;}
     uint32_t getAdd() {return exeAdd;}
     void setCount(uint32_t add) {exeCount = exeCount + add;}
+    uint32_t getCount(){ return exeCount;}
 
     bool operator > (const Thread& other) const {
         return exeCount > other.exeCount;
+    }
+
+    bool operator >= (const Thread& other) const {
+        return exeCount >= other.exeCount;
     }
 
     AddressSpace *addressSpace;

@@ -37,7 +37,9 @@ public:
             for(uint32_t i = 0; i < tab; i++) {
                 Debug::printf("\t");
             }
-            Debug::printf("item = %d\n",(uint32_t)*item);
+            Debug::printf("color = %d item = %d\n",(uint32_t)black, (uint32_t)*item);
+            //left->printNode(tab + 1);
+            //right->printNode(tab + 1);
         } 
 };
 
@@ -47,7 +49,11 @@ class RBT {
         uint32_t size;
 
         RBTNode<T>* getUncle(RBTNode<T>* n) {
+            if(root == n)
+                return nullptr;
             RBTNode<T>* parent = n->parent;
+            if(parent == root)
+                return nullptr;
             RBTNode<T>* gparent = n->parent->parent;
 
             if(gparent->left == parent)
@@ -98,50 +104,21 @@ class RBT {
              cur->parent = oldLeft;
         }
 
-        void recursiveAdd(RBTNode<T>* current, RBTNode<T>* parent, T* item){
-            if(root == nullptr) {
-                root = new RBTNode<T>(item, BLACK, nullptr, nullptr, parent);
-                return;
-            }
-
-            if(current == nullptr){
-                current = new RBTNode<T>(item, RED, nullptr, nullptr, parent);
-                addCheck(current);
-                return;
-            }
-            if(*(current->item) > *item){
-                recursiveAdd(current->left, current, item);
-            }
-            else{
-                recursiveAdd(current->right, current, item);
-            }
-        }
-
         void addCheck(RBTNode<T>* justAdded)
         {
             RBTNode<T>* parent = justAdded->parent;
             RBTNode<T>* gparent = justAdded->parent->parent;
             RBTNode<T>* uncle = getUncle(justAdded);
             
-            if(parent == nullptr)
-            {
-                justAdded->setColor(BLACK);
-            }
-            else if(!parent->isBlack()){
+            if(parent->isBlack()){
                 return;
             }
-            else if(!(uncle->isBlack())){
-                parent->setColor(BLACK);
-                uncle->setColor(BLACK);
-                gparent->setColor(RED);
-                addCheck(gparent);
-            }
-            else{
-                if(justAdded == gparent->left->right){
+            else if(uncle == nullptr || (uncle->isBlack())){
+                if(gparent->left != nullptr && justAdded == gparent->left->right){
                     rotateLeft(parent);
                     justAdded = justAdded->left;
                 }
-                else if(justAdded == gparent->right->left) {
+                else if(gparent->right !=nullptr && justAdded == gparent->right->left) {
                     rotateRight(parent);
                     justAdded = justAdded->right;
                 }
@@ -154,6 +131,37 @@ class RBT {
 
                 parent->setColor(BLACK);
                 gparent->setColor(RED);
+            }
+            else{
+                uncle->setColor(BLACK);
+                gparent->setColor(RED);
+                addCheck(gparent);
+            }
+        }
+
+        void recursiveAdd(RBTNode<T>* current, RBTNode<T>* parent, T* item){
+            if(root == nullptr) {
+                root = new RBTNode<T>(item, BLACK, nullptr, nullptr, nullptr);
+                return;
+            }
+
+            if(current == nullptr){
+                current = new RBTNode<T>(item, RED, nullptr, nullptr, parent);
+                if(*(parent->item) > *item){
+                    parent->left = current;
+                }
+                else{
+                    parent->right = current;
+                }
+                //addCheck(current);
+                return;
+            }
+
+            if(*(current->item) > *item){
+                recursiveAdd(current->left, current, item);
+            }
+            else{
+                recursiveAdd(current->right, current, item);
             }
         }
 
@@ -220,39 +228,39 @@ class RBT {
         {
             if(cur->isBlack()) {
                 if(cur->parent == nullptr) {
-                    cur->left->right = cur->right;
-                    cur->left->parent = nullptr;
-                    cur->right->parent = cur->left;
+                    cur->right->parent = nullptr;
+                    root = cur->right;
+                    cur->right->setColor(BLACK);
                     return;
                 } 
 
                 redSib(cur);   
             }
-            else
-                cur = nullptr;
+            else {
+                cur->parent->left = nullptr;
+            }
         }
         
         T* removeLeftMostChecked(RBTNode<T>* current){
-            RBTNode<T>* parent = nullptr;
-            while(current != nullptr) {
-                parent = current;
+            while(current->left != nullptr) {
                 current = current->left;
             }
 
-            removeCheck(parent);
-            T* proc = parent->item;
+            removeCheck(current);
+            T* proc = current->item;
+            delete current;
             return proc;
         }
 
         void printTreeRec(RBTNode<T>* cur, uint32_t tab) {
             if(cur == nullptr) {
-                Debug::printf("*** found null\n");
+                //Debug::printf("*** found null\n");
                 return;
             }
 
-            printTreeRec(cur->left, tab + 1);
-            cur->printNode(tab);
             printTreeRec(cur->right, tab + 1);
+            cur->printNode(tab);
+            printTreeRec(cur->left, tab + 1);
         }
 
 public:

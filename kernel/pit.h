@@ -22,10 +22,6 @@ public:
         return jiffies / jiffiesPerSecond;
     }
 
-    static uint32_t mseconds(void) {
-        return (jiffies * 10000) / jiffiesPerSecond;
-    }
-
 };
 
 #endif

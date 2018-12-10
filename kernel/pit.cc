@@ -140,7 +140,7 @@ extern "C" void apitHandler(void* something) {
         Pit::jiffies ++;
     }
     SMP::eoi_reg.set(0);
-   // if((Pit::mseconds() - active()->getAdd()) > active()->getMax()){
+    if((Pit::jiffies - active()->getAdd()) > active()->getMax()){
         yield();
- //   }
+    }
 }

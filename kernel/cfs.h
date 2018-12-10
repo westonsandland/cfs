@@ -7,17 +7,27 @@ class CFS
 {
         RBT<Thread> tree;
 public:
+	CFS(): tree() {}
         void add(Thread* thread) {
-                thread->setCount(Pit::mseconds() - thread->getAdd());
-                thread->setAdd(Pit::mseconds());
+		if(thread == nullptr)
+			return;
+		//Debug::printf("%d\n",(uint32_t)thread);
+                //thread->setCount(Pit::mseconds() - thread->getAdd());
+
+		Debug::printf("B");
+                //thread->setAdd(Pit::mseconds());
+
+		Debug::printf("C");
                 tree.add(thread);
+
+		Debug::printf("D");
         }
 
         Thread* remove() {
                 Thread* thread = tree.removeLeftMost();
-                uint32_t max = (Pit::mseconds() - thread->getAdd()) / tree.getSize();
-                thread->setMax(max);
-                thread->setAdd(Pit::mseconds());
+                //uint32_t max = (Pit::mseconds() - thread->getAdd()) / tree.getSize();
+                //thread->setMax(max);
+                //thread->setAdd(Pit::mseconds());
                 return thread;
         }
 

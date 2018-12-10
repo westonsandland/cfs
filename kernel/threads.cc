@@ -20,6 +20,7 @@ public:
     }
 };
 
+//CFS readyQ;
 Queue<Thread> readyQ;
 Queue<Thread> zombieQ;
 Thread** activeThreads;
@@ -37,13 +38,21 @@ void reaper() {
             delete th;
         }
     }
+
+	//Debug::printf("*** thread init\n");
 }
 
 void threadsInit() {
+	//readyQ = new CFS();
+	//zombieQ = Queue<Thread>();
+	
+	//Debug::printf("*** thread init\n");
     activeThreads = new Thread*[kConfig.totalProcs];
     for (uint32_t i=0; i<kConfig.totalProcs; i++) {
         activeThreads[i] = new InitialThread();
     }
+
+	//Debug::printf("*** thread init\n");
 
     // The reaper
     thread([]() {
@@ -52,6 +61,8 @@ void threadsInit() {
             yield();
         }
     });
+
+	//Debug::printf("*** thread init  2\n");
 }
 
 
