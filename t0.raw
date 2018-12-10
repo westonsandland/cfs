@@ -2,7 +2,7 @@ spawn qemu-system-i386 -nographic -smp 4 --serial mon:stdio -hdc kernel/kernel.i
 WARNING: Image format was not specified for 'kernel/kernel.img' and probing guessed raw.
          Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
          Specify the 'raw' format explicitly to remove the restrictions.
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 | What just happened? Why am I here?
 | totalProcs 4
 | memSize 0x7fd0000 127MB
@@ -11,8 +11,8 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 | physical range 0x200000 0x7fd0000
 | pitInit freq 1000Hz
 | pitInit divider 59659
-| APIT running at 1000039905Hz
-| APIT counter=1000039 for 1000Hz
+| APIT running at 1000055789Hz
+| APIT counter=1000055 for 1000Hz
 | initialize 1
 | reset 1
 |      eip:0x8000
