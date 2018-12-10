@@ -1,3 +1,39 @@
-Sources:
-https://www.geeksforgeeks.org/c-program-red-black-tree-insertion/
-https://en.wikipedia.org/wiki/Red%E2%80%93black_tree
+- Team members:
+
+- What percentage of the work did everyone do?
+	Weston: 30%
+	Alexander: 30%
+	Luke: 40%
+
+- What did you propose?
+	Implementing a Completely Fair Scheduler
+	to replace the readyQ.
+
+- What did you implement?
+	We ended up implementing a CFS, but used
+	a priority queue instead of a red black tree.
+
+- What did you learn?
+	We learned how to access variables from the pit class
+	and use them to track time, how to prioritize threads,
+	and that Red Black Trees are hard to implement.	
+
+- Tell me how to run your code and verify that it actually works
+	to run:
+	make all
+	make -s test
+
+	to verify:
+	after replacing the readyQ with the priority, and modifying
+	the apit handler, our code still passes the tests from
+	p5, and each thread does an equal amount of work.
+
+- Add any other comments 
+For some reason calling Pit::seconds() caused a crash/timeout,
+so we ended up using Pit::jiffies instead, which worked, but we never
+found out why it caused the crash/timeout in the first palce.
+
+Also, it seems that CFS is slightly less time efficient, so t1 times out
+on occasion, but does work if given more time.
+
+
